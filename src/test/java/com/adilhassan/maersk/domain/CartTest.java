@@ -104,7 +104,7 @@ class CartTest {
   @Test
   public void canAddASinglePromotionToCart() {
     //Given
-    final Promotion promotion = new NSkusForAFixedPricePromotion();
+    final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
 
     //When
     cart.addPromotion(promotion);
@@ -116,7 +116,7 @@ class CartTest {
   @Test
   public void canAddMultiplePromotionsToCartAtOnce() {
     //Given
-    final Promotion promotion1 = new NSkusForAFixedPricePromotion();
+    final Promotion promotion1 = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
     final Promotion promotion2 = new TwoSkusForAFixedPricePromotion();
 
     //When
@@ -130,7 +130,7 @@ class CartTest {
   public void canApplyPromotionsToCart() {
     //Given
     cart.addSkus(3, SKU.A);
-    final Promotion promotion = new NSkusForAFixedPricePromotion();
+    final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
 
     //When
     cart.addPromotion(promotion);
@@ -142,6 +142,15 @@ class CartTest {
 
   @Test
   public void canGetCartTotalWithPromotionalDiscount() {
+    //Given
+    cart.addSkus(3, SKU.A);
+    final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
 
+    //When
+    cart.addPromotion(promotion);
+    cart.applyPromotions();
+
+    //Then
+    assertEquals(130, cart.getDiscount());
   }
 }

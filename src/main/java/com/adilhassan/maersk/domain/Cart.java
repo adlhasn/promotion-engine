@@ -79,6 +79,10 @@ public class Cart {
     return promotionEngine.getDiscount();
   }
 
+  public double getTotal() {
+    return getCartTotalWithPromotionalDiscount();
+  }
+
   public double getCartTotalWithoutPromotionalDiscount() {
     skuPrice.entrySet().forEach(entry -> cartTotalWithoutPromotionalDiscount += entry.getValue());
     return cartTotalWithoutPromotionalDiscount;
@@ -88,7 +92,5 @@ public class Cart {
     return getCartTotalWithoutPromotionalDiscount() - getDiscount();
   }
 
-  public double getTotal() {
-    return getCartTotalWithPromotionalDiscount();
-  }
+
 }
