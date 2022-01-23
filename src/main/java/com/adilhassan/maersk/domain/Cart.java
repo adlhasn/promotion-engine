@@ -94,6 +94,4 @@ public class Cart {
   public double getCartTotalWithPromotionalDiscount() {
     return getCartTotalWithoutPromotionalDiscount() - getDiscount();
   }
-
-
 }
