@@ -42,7 +42,15 @@ public class Cart {
     return skus;
   }
 
-  public void removeSku(SKU sku) {
+  public void removeSku(final SKU sku) {
     skus.remove(sku);
+  }
+
+  public int getSkuCount(final SKU sku) {
+    return skuCount.get(sku);
+  }
+
+  public double getSkuPrice(SKU sku) {
+    return 0;
   }
 }

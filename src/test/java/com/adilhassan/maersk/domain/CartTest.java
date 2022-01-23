@@ -48,6 +48,36 @@ class CartTest {
   }
 
   @Test
+  public void canGetSkuCount() {
+    //Given
+    cart.addSkus(3, SKU.A);
+    cart.addSkus(2, SKU.B);
+
+    //When
+    int skuACount = cart.getSkuCount(SKU.A);
+    int skuBCount = cart.getSkuCount(SKU.B);
+
+    //Then
+    assertEquals(3, skuACount);
+    assertEquals(2, skuBCount);
+  }
+
+  @Test
+  public void canGetSkuPrice() {
+    //Given
+    cart.addSkus(3, SKU.A);
+    cart.addSkus(2, SKU.B);
+
+    //When
+    double skuAPrice = cart.getSkuPrice(SKU.A);
+    double skuBPrice = cart.getSkuPrice(SKU.B);
+
+    //Then
+    assertEquals(150, skuAPrice);
+    assertEquals(60, skuBPrice);
+  }
+
+  @Test
   public void canAddAPromotionToCart() {
 
   }
@@ -69,16 +99,6 @@ class CartTest {
 
   @Test
   public void canGetTotalPriceOfTheCartWithPromotionalDiscount() {
-
-  }
-
-  @Test
-  public void canGetNumberOfItemsOfParticularSkuInTheCart() {
-
-  }
-
-  @Test
-  public void canGetThePriceOfAGivenSkuInTheCart() {
 
   }
 }
