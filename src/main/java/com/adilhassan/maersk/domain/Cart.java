@@ -51,11 +51,11 @@ public class Cart {
   }
 
   public int getSkuCount(final SKU sku) {
-    return skuCount.get(sku);
+    return skuCount.get(sku) == null ? 0 : skuCount.get(sku);
   }
 
   public double getSkuPrice(final SKU sku) {
-    return skuPrice.get(sku);
+    return skuPrice.get(sku) == null ? 0 : skuPrice.get(sku);
   }
 
   public PromotionEngine getPromotionEngine() {

@@ -48,6 +48,7 @@ class TwoSkusForAFixedPricePromotionTest {
 
     //When
     cart.addPromotion(promotion);
+    cart.applyPromotions();
 
     //Then
     assertEquals(5, promotion.getDiscount());

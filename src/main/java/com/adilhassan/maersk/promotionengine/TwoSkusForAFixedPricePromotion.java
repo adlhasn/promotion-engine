@@ -18,20 +18,36 @@ public class TwoSkusForAFixedPricePromotion implements Promotion {
   }
 
   @Override
-  public boolean isApplicable(Cart cart) {
-    return false;
+  public boolean isApplicable(final Cart cart) {
+    final int skuOneCount = cart.getSkuCount(skuOne);
+    final int skuTwoCount = cart.getSkuCount(skuTwo);
+
+    return skuOneCount >= 1 && skuTwoCount >= 1;
   }
 
   @Override
-  public void applyPromotion(Cart cart) {
+  public void applyPromotion(final Cart cart) {
+    final int skuOneCount = cart.getSkuCount(skuOne);
+    final int skuTwoCount = cart.getSkuCount(skuTwo);
 
+    final int numberOfPromotionsToApply = Math.min(skuOneCount, skuTwoCount);
+    final double promotionalPriceOfSkus = numberOfPromotionsToApply * fixedPrice;
+
+    final int numberOfSkusOneOnStandardPrice = skuOneCount - numberOfPromotionsToApply;
+    final int numberOfSkusTwoOnStandardPrice = skuTwoCount - numberOfPromotionsToApply;
+
+    final double skusStandardPrice = (numberOfSkusOneOnStandardPrice * skuOne.getPrice()) +
+        (numberOfSkusTwoOnStandardPrice * skuTwo.getPrice());
+
+    final double totalPriceOfSkuWithPromotion = skusStandardPrice + promotionalPriceOfSkus;
+
+    discount = (cart.getSkuPrice(skuOne) + cart.getSkuPrice(skuTwo)) - totalPriceOfSkuWithPromotion;
   }
 
   @Override
   public double getDiscount() {
     return discount;
   }
-
 
   private void validate(final SKU skuOne, final SKU skuTwo, final double fixedPrice) {
     final StringBuilder exceptionMessage = new StringBuilder();
