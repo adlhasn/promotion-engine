@@ -15,6 +15,21 @@ public class NSkusForAFixedPricePromotion implements Promotion {
     this.fixedPrice = fixedPrice;
   }
 
+  @Override
+  public boolean isApplicable(final Cart cart) {
+    return false;
+  }
+
+  @Override
+  public void applyPromotion(final Cart cart) {
+
+  }
+
+  @Override
+  public double getDiscount() {
+    return 0;
+  }
+
   private void validate(final int skuCount, final SKU sku, final double fixedPrice) {
     final StringBuilder exceptionMessage = new StringBuilder();
 
@@ -29,20 +44,5 @@ public class NSkusForAFixedPricePromotion implements Promotion {
     }
     if (exceptionMessage.length() > 0)
       throw new IllegalArgumentException(exceptionMessage.toString());
-  }
-
-  @Override
-  public boolean isApplicable(final Cart cart) {
-    return false;
-  }
-
-  @Override
-  public void applyPromotion(final Cart cart) {
-
-  }
-
-  @Override
-  public double getDiscount() {
-    return 0;
   }
 }
