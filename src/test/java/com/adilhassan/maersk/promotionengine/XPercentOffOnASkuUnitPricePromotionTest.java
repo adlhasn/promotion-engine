@@ -13,7 +13,7 @@ class XPercentOffOnASkuUnitPricePromotionTest {
   public void promotionIsApplicable() {
     //Given
     cart.addSku(SKU.A);
-    final Promotion promotion = new XPercentOffOnASkuUnitPricePromotion();
+    final Promotion promotion = new XPercentOffOnASkuUnitPricePromotion(10, SKU.A);
 
     //When - Then
     assertTrue(promotion.isApplicable(cart));
@@ -23,7 +23,7 @@ class XPercentOffOnASkuUnitPricePromotionTest {
   public void promotionIsNotApplicable() {
     //Given
     cart.addSku(SKU.A);
-    final Promotion promotion = new XPercentOffOnASkuUnitPricePromotion();
+    final Promotion promotion = new XPercentOffOnASkuUnitPricePromotion(10, SKU.B);
 
     //When - Then
     assertFalse(promotion.isApplicable(cart));
@@ -33,7 +33,7 @@ class XPercentOffOnASkuUnitPricePromotionTest {
   public void promotionIsApplied() {
     //Given
     cart.addSku(SKU.A);
-    final Promotion promotion = new XPercentOffOnASkuUnitPricePromotion();
+    final Promotion promotion = new XPercentOffOnASkuUnitPricePromotion(10, SKU.A);
 
     //When
     cart.addPromotion(promotion);

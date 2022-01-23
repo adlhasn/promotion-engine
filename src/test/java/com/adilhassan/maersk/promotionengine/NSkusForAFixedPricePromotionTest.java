@@ -19,11 +19,7 @@ class NSkusForAFixedPricePromotionTest {
     cart.addSkus(count, SKU.A);
     final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
 
-    //When
-    cart.addPromotion(promotion);
-    cart.applyPromotions();
-
-    //Then
+    //When - Then
     assertTrue(promotion.isApplicable(cart));
   }
 
@@ -34,11 +30,7 @@ class NSkusForAFixedPricePromotionTest {
     cart.addSkus(count, SKU.A);
     final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
 
-    //When
-    cart.addPromotion(promotion);
-    cart.applyPromotions();
-
-    //Then
+    //When - Then
     assertFalse(promotion.isApplicable(cart));
   }
 
