@@ -144,4 +144,23 @@ class PromotionEngineTest {
     assertEquals(50, promotionEngine.getDiscount());
     assertEquals(200, cart.getTotal());
   }
+
+  @Test
+  public void differentTypesOfPromotionsCanBeAppliedOnTheSameSku() {
+    //Given
+    cart.addSkus(5, SKU.A);
+    final Promotion promotion1 = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
+    final Promotion promotion2 = new XPercentOffOnASkuUnitPricePromotion(10, SKU.A);
+
+    //When
+    promotionEngine.addPromotions(List.of(promotion1, promotion2));
+    promotionEngine.applyPromotions();
+
+    //Then
+    //promotion1 Discount = 250 - (130 + 100) = 20
+    //promotion2 Discount = 250 * (10/100) = 25
+    //total promotional discount = 20 + 25
+    assertEquals(45, promotionEngine.getDiscount());
+    assertEquals(205, cart.getTotal());
+  }
 }
