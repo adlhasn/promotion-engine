@@ -1,4 +1,4 @@
-package com.adilhassan.assignment.domain;
+package com.adilhassan.project.domain;
 
 public enum SKU {
   A(50), B(30), C(20), D(15);

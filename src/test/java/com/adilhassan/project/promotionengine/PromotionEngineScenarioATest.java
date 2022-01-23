@@ -1,7 +1,7 @@
-package com.adilhassan.assignment.promotionengine;
+package com.adilhassan.project.promotionengine;
 
-import com.adilhassan.assignment.domain.Cart;
-import com.adilhassan.assignment.domain.SKU;
+import com.adilhassan.project.domain.Cart;
+import com.adilhassan.project.domain.SKU;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -33,7 +33,7 @@ class PromotionEngineScenarioATest {
     promotionEngine.applyPromotions();
 
     //Then
-    assertEquals(0, promotionEngine.getDiscount());
     assertEquals(100, cart.getTotal());
+    assertEquals(0, promotionEngine.getDiscount());
   }
 }

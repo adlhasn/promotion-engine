@@ -1,7 +1,7 @@
-package com.adilhassan.assignment.domain;
+package com.adilhassan.project.domain;
 
-import com.adilhassan.assignment.promotionengine.Promotion;
-import com.adilhassan.assignment.promotionengine.PromotionEngine;
+import com.adilhassan.project.promotionengine.Promotion;
+import com.adilhassan.project.promotionengine.PromotionEngine;
 
 import java.util.ArrayList;
 import java.util.List;

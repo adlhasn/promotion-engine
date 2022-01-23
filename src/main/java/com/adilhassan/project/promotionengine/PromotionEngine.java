@@ -1,6 +1,6 @@
-package com.adilhassan.assignment.promotionengine;
+package com.adilhassan.project.promotionengine;
 
-import com.adilhassan.assignment.domain.Cart;
+import com.adilhassan.project.domain.Cart;
 
 import java.util.ArrayList;
 import java.util.List;
