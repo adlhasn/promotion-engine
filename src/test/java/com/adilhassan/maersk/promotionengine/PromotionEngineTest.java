@@ -125,4 +125,23 @@ class PromotionEngineTest {
     assertEquals(55, promotionEngine.getDiscount());
     assertEquals(280, cart.getTotal());
   }
+
+  /*
+  If the same promotion is applied twice on a given SKU then only the last one takes effect
+   */
+  @Test
+  public void onlyTheLastAppliedPromotionTakesEffect() {
+    //Given
+    cart.addSkus(5, SKU.A);
+    final Promotion promotion1 = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
+    final Promotion promotion2 = new NSkusForAFixedPricePromotion(5, SKU.A, 200);
+
+    //When
+    promotionEngine.addPromotions(List.of(promotion1, promotion2));
+    promotionEngine.applyPromotions();
+
+    //Then
+    assertEquals(50, promotionEngine.getDiscount());
+    assertEquals(200, cart.getTotal());
+  }
 }
