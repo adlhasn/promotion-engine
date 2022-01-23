@@ -6,6 +6,8 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TwoSkusForAFixedPricePromotionTest {
@@ -52,6 +54,18 @@ class TwoSkusForAFixedPricePromotionTest {
 
     //Then
     assertEquals(5, promotion.getDiscount());
+  }
+
+  @Test
+  public void canGetSkus() {
+    //Given
+    final Promotion promotion = new TwoSkusForAFixedPricePromotion(SKU.C, SKU.D, 30);
+
+    //When
+    final List<SKU> skus = promotion.getSkus();
+
+    //Then
+    assertIterableEquals(List.of(SKU.C, SKU.D), skus);
   }
 
   @Test
