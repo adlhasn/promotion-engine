@@ -36,7 +36,7 @@ public class PromotionEngine {
       if (promotion.isApplicable(cart)) {
         promotion.applyPromotion(cart);
       }
-      discount = discount + promotion.getDiscount();
+      discount += promotion.getDiscount();
     }
   }
 

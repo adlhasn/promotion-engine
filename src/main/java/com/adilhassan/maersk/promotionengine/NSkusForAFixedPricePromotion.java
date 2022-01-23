@@ -31,7 +31,7 @@ public class NSkusForAFixedPricePromotion implements Promotion {
 
     double skuPrice = cart.getSkuPrice(sku);
 
-    discount = skuPrice - ((numberOfPromotionsToApply * fixedPrice) - (numberOfSkusOnStandardPrice * sku.getPrice()));
+    discount = skuPrice - ((numberOfPromotionsToApply * fixedPrice) + (numberOfSkusOnStandardPrice * sku.getPrice()));
   }
 
   @Override
