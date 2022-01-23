@@ -21,20 +21,21 @@ public class Cart {
   }
 
   public boolean addSku(final SKU sku) {
-    if (sku != null)
+    if (sku != null) {
+      skuCount.compute(sku, (k, v) -> v == null ? 1 : v + 1);
+      skuPrice.compute(sku, (k, v) -> v == null ? k.getPrice() : v + k.getPrice());
       return skus.add(sku);
-
+    }
     return false;
   }
 
   public boolean addSkus(int count, final SKU sku) {
     if (count > 0 && sku != null) {
       for (int i=0; i<count; i++) {
-        skus.add(sku);
+        addSku(sku);
       }
       return true;
     }
-
     return false;
   }
 
@@ -51,6 +52,6 @@ public class Cart {
   }
 
   public double getSkuPrice(SKU sku) {
-    return 0;
+    return skuPrice.get(sku);
   }
 }

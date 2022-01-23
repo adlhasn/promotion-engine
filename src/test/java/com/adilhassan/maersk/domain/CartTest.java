@@ -1,6 +1,5 @@
 package com.adilhassan.maersk.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -50,31 +49,37 @@ class CartTest {
   @Test
   public void canGetSkuCount() {
     //Given
-    cart.addSkus(3, SKU.A);
+    cart.addSku(SKU.A);
     cart.addSkus(2, SKU.B);
+    cart.addSkus(3, SKU.C);
 
     //When
     int skuACount = cart.getSkuCount(SKU.A);
     int skuBCount = cart.getSkuCount(SKU.B);
+    int skuCCount = cart.getSkuCount(SKU.C);
 
     //Then
-    assertEquals(3, skuACount);
+    assertEquals(1, skuACount);
     assertEquals(2, skuBCount);
+    assertEquals(3, skuCCount);
   }
 
   @Test
   public void canGetSkuPrice() {
     //Given
-    cart.addSkus(3, SKU.A);
+    cart.addSku(SKU.A);
     cart.addSkus(2, SKU.B);
+    cart.addSkus(3, SKU.C);
 
     //When
     double skuAPrice = cart.getSkuPrice(SKU.A);
     double skuBPrice = cart.getSkuPrice(SKU.B);
+    double skuCPrice = cart.getSkuPrice(SKU.C);
 
     //Then
-    assertEquals(150, skuAPrice);
+    assertEquals(50, skuAPrice);
     assertEquals(60, skuBPrice);
+    assertEquals(60, skuCPrice);
   }
 
   @Test
