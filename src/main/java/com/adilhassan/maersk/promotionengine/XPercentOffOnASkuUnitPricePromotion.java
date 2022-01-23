@@ -3,6 +3,8 @@ package com.adilhassan.maersk.promotionengine;
 import com.adilhassan.maersk.domain.Cart;
 import com.adilhassan.maersk.domain.SKU;
 
+import java.util.List;
+
 public class XPercentOffOnASkuUnitPricePromotion implements Promotion {
   private final double percent;
   private final SKU sku;
@@ -28,5 +30,10 @@ public class XPercentOffOnASkuUnitPricePromotion implements Promotion {
   @Override
   public double getDiscount() {
     return discount;
+  }
+
+  @Override
+  public List<SKU> getSkus() {
+    return List.of(sku);
   }
 }

@@ -3,6 +3,8 @@ package com.adilhassan.maersk.promotionengine;
 import com.adilhassan.maersk.domain.Cart;
 import com.adilhassan.maersk.domain.SKU;
 
+import java.util.List;
+
 public class TwoSkusForAFixedPricePromotion implements Promotion {
   private final SKU skuOne;
   private final SKU skuTwo;
@@ -47,6 +49,11 @@ public class TwoSkusForAFixedPricePromotion implements Promotion {
   @Override
   public double getDiscount() {
     return discount;
+  }
+
+  @Override
+  public List<SKU> getSkus() {
+    return List.of(skuOne, skuTwo);
   }
 
   private void validate(final SKU skuOne, final SKU skuTwo, final double fixedPrice) {

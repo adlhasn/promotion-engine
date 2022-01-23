@@ -17,8 +17,33 @@ public class PromotionEngine {
 
   public void addPromotion(final Promotion promotion) {
     if (promotion != null) {
+      if (alreadyExists(promotion)) {
+        int index = findIndex(promotion);
+        removePromotion(index);
+      }
       promotions.add(promotion);
     }
+  }
+
+  private int findIndex(final Promotion promotion) {
+    int index = 0;
+    for (int i=0; i<promotions.size(); i++) {
+      final Promotion p = promotions.get(i);
+      if (isSame(p, promotion)) {
+        index = i;
+      }
+    }
+    return index;
+  }
+
+
+  private boolean isSame(final Promotion p1, final Promotion p2) {
+    return p1.getClass().equals(p2.getClass()) &&
+        p1.getSkus().equals(p2.getSkus());
+  }
+
+  private void removePromotion(int index) {
+    promotions.remove(index);
   }
 
   public void addPromotions(final List<Promotion> promotions) {
@@ -42,5 +67,13 @@ public class PromotionEngine {
 
   public double getDiscount() {
     return discount;
+  }
+
+  private boolean alreadyExists(Promotion promotion) {
+    return promotionAlreadyExistsThatIsOfTheSameTypeAndOnTheSameSku(promotion);
+  }
+
+  private boolean promotionAlreadyExistsThatIsOfTheSameTypeAndOnTheSameSku(final Promotion promotion) {
+    return promotions.stream().anyMatch(p -> isSame(p, promotion));
   }
 }
