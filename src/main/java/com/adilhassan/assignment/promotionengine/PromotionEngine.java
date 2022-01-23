@@ -1,6 +1,6 @@
-package com.adilhassan.maersk.promotionengine;
+package com.adilhassan.assignment.promotionengine;
 
-import com.adilhassan.maersk.domain.Cart;
+import com.adilhassan.assignment.domain.Cart;
 
 import java.util.ArrayList;
 import java.util.List;

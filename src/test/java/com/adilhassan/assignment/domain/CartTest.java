@@ -1,8 +1,8 @@
-package com.adilhassan.maersk.domain;
+package com.adilhassan.assignment.domain;
 
-import com.adilhassan.maersk.promotionengine.NSkusForAFixedPricePromotion;
-import com.adilhassan.maersk.promotionengine.Promotion;
-import com.adilhassan.maersk.promotionengine.TwoSkusForAFixedPricePromotion;
+import com.adilhassan.assignment.promotionengine.NSkusForAFixedPricePromotion;
+import com.adilhassan.assignment.promotionengine.Promotion;
+import com.adilhassan.assignment.promotionengine.TwoSkusForAFixedPricePromotion;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

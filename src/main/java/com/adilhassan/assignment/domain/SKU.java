@@ -1,4 +1,4 @@
-package com.adilhassan.maersk.domain;
+package com.adilhassan.assignment.domain;
 
 public enum SKU {
   A(50), B(30), C(20), D(15);

@@ -1,7 +1,7 @@
-package com.adilhassan.maersk.promotionengine;
+package com.adilhassan.assignment.promotionengine;
 
-import com.adilhassan.maersk.domain.Cart;
-import com.adilhassan.maersk.domain.SKU;
+import com.adilhassan.assignment.domain.Cart;
+import com.adilhassan.assignment.domain.SKU;
 
 import java.util.List;
 

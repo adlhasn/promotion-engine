@@ -1,24 +1,24 @@
-package com.adilhassan.maersk.promotionengine;
+package com.adilhassan.assignment.promotionengine;
 
-import com.adilhassan.maersk.domain.Cart;
-import com.adilhassan.maersk.domain.SKU;
+import com.adilhassan.assignment.domain.Cart;
+import com.adilhassan.assignment.domain.SKU;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PromotionEngineScenarioBTest {
+class PromotionEngineScenarioATest {
 
   public Cart cart = new Cart();
   public PromotionEngine promotionEngine = cart.getPromotionEngine();
 
   @Test
-  public void multiplePromotionsAreApplied_ScenarioB() {
+  public void noPromotionsAreApplied_ScenarioA() {
     //Given
-    cart.addSkus(5, SKU.A);
-    cart.addSkus(5, SKU.B);
-    cart.addSkus(1, SKU.C);
+    cart.addSku(SKU.A);
+    cart.addSku(SKU.B);
+    cart.addSku(SKU.C);
 
     final Promotion nSkusForAFixedPricePromotion_A = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
     final Promotion nSkusForAFixedPricePromotion_B = new NSkusForAFixedPricePromotion(2, SKU.B, 45);
@@ -26,14 +26,14 @@ class PromotionEngineScenarioBTest {
 
     promotionEngine.addPromotions(List.of
         (nSkusForAFixedPricePromotion_A,
-            nSkusForAFixedPricePromotion_B,
-            twoSkusForAFixedPricePromotion_CD));
+        nSkusForAFixedPricePromotion_B,
+        twoSkusForAFixedPricePromotion_CD));
 
     //When
     promotionEngine.applyPromotions();
 
     //Then
-    assertEquals(50, promotionEngine.getDiscount());
-    assertEquals(370, cart.getTotal());
+    assertEquals(0, promotionEngine.getDiscount());
+    assertEquals(100, cart.getTotal());
   }
 }

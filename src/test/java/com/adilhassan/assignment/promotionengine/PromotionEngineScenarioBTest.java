@@ -1,25 +1,24 @@
-package com.adilhassan.maersk.promotionengine;
+package com.adilhassan.assignment.promotionengine;
 
-import com.adilhassan.maersk.domain.Cart;
-import com.adilhassan.maersk.domain.SKU;
+import com.adilhassan.assignment.domain.Cart;
+import com.adilhassan.assignment.domain.SKU;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PromotionEngineScenarioCTest {
+class PromotionEngineScenarioBTest {
 
   public Cart cart = new Cart();
   public PromotionEngine promotionEngine = cart.getPromotionEngine();
 
   @Test
-  public void multiplePromotionsAreApplied_ScenarioC() {
+  public void multiplePromotionsAreApplied_ScenarioB() {
     //Given
-    cart.addSkus(3, SKU.A);
+    cart.addSkus(5, SKU.A);
     cart.addSkus(5, SKU.B);
     cart.addSkus(1, SKU.C);
-    cart.addSkus(1, SKU.D);
 
     final Promotion nSkusForAFixedPricePromotion_A = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
     final Promotion nSkusForAFixedPricePromotion_B = new NSkusForAFixedPricePromotion(2, SKU.B, 45);
@@ -34,7 +33,7 @@ class PromotionEngineScenarioCTest {
     promotionEngine.applyPromotions();
 
     //Then
-    assertEquals(55, promotionEngine.getDiscount());
-    assertEquals(280, cart.getTotal());
+    assertEquals(50, promotionEngine.getDiscount());
+    assertEquals(370, cart.getTotal());
   }
 }
