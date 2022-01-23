@@ -36,5 +36,4 @@ class PromotionEngineScenarioBTest {
     assertEquals(50, promotionEngine.getDiscount());
     assertEquals(370, cart.getTotal());
   }
-
 }

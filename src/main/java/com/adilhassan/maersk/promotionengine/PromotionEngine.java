@@ -36,13 +36,12 @@ public class PromotionEngine {
     return index;
   }
 
-
   private boolean isSame(final Promotion p1, final Promotion p2) {
     return p1.getClass().equals(p2.getClass()) &&
         p1.getSkus().equals(p2.getSkus());
   }
 
-  private void removePromotion(int index) {
+  private void removePromotion(final int index) {
     promotions.remove(index);
   }
 
@@ -69,7 +68,7 @@ public class PromotionEngine {
     return discount;
   }
 
-  private boolean alreadyExists(Promotion promotion) {
+  private boolean alreadyExists(final Promotion promotion) {
     return promotionAlreadyExistsThatIsOfTheSameTypeAndOnTheSameSku(promotion);
   }
 
