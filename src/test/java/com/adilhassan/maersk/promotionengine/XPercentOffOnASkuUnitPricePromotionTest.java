@@ -45,4 +45,14 @@ class XPercentOffOnASkuUnitPricePromotionTest {
     //Then
     assertEquals(discount, promotion.getDiscount());
   }
+
+  @Test
+  public void promotionIsNotApplied() {
+    //Given
+    cart.addSku(SKU.A);
+    final Promotion promotion = new XPercentOffOnASkuUnitPricePromotion(10, SKU.B);
+
+    //When - Then
+    assertEquals(0, promotion.getDiscount());
+  }
 }
