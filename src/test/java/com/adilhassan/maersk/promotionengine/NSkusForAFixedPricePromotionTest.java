@@ -19,8 +19,11 @@ class NSkusForAFixedPricePromotionTest {
     cart.addSkus(count, SKU.A);
     final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
 
-    //When - Then
-    assertTrue(promotion.isApplicable(cart));
+    //When
+    final boolean isApplicable = promotion.isApplicable(cart);
+
+    //Then
+    assertTrue(isApplicable);
   }
 
   @ParameterizedTest
@@ -30,8 +33,11 @@ class NSkusForAFixedPricePromotionTest {
     cart.addSkus(count, SKU.A);
     final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
 
-    //When - Then
-    assertFalse(promotion.isApplicable(cart));
+    //When
+    final boolean isApplicable = promotion.isApplicable(cart);
+
+    //Then
+    assertFalse(isApplicable);
   }
 
   @ParameterizedTest

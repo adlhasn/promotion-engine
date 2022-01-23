@@ -17,8 +17,11 @@ class XPercentOffOnASkuUnitPricePromotionTest {
     cart.addSku(SKU.A);
     final Promotion promotion = new XPercentOffOnASkuUnitPricePromotion(10, SKU.A);
 
+    //When
+    boolean isApplicable = promotion.isApplicable(cart);
+
     //When - Then
-    assertTrue(promotion.isApplicable(cart));
+    assertTrue(isApplicable);
   }
 
   @Test
@@ -27,8 +30,11 @@ class XPercentOffOnASkuUnitPricePromotionTest {
     cart.addSku(SKU.A);
     final Promotion promotion = new XPercentOffOnASkuUnitPricePromotion(10, SKU.B);
 
-    //When - Then
-    assertFalse(promotion.isApplicable(cart));
+    //When
+    final boolean isApplicable = promotion.isApplicable(cart);
+
+    //Then
+    assertFalse(isApplicable);
   }
 
   @ParameterizedTest

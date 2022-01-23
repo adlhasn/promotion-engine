@@ -16,8 +16,11 @@ class TwoSkusForAFixedPricePromotionTest {
     cart.addSku(SKU.D);
     final Promotion promotion = new TwoSkusForAFixedPricePromotion(SKU.C, SKU.D, 30);
 
-    //When - Then
-    assertTrue(promotion.isApplicable(cart));
+    //When
+    final boolean isApplicable = promotion.isApplicable(cart);
+
+    //Then
+    assertTrue(isApplicable);
   }
 
   @Test
@@ -27,8 +30,11 @@ class TwoSkusForAFixedPricePromotionTest {
     cart.addSku(SKU.D);
     final Promotion promotion = new TwoSkusForAFixedPricePromotion(SKU.C, SKU.D, 30);
 
-    //When - Then
-    assertFalse(promotion.isApplicable(cart));
+    //When
+    final boolean isApplicable = promotion.isApplicable(cart);
+
+    //Then
+    assertFalse(isApplicable);
   }
 
   @Test
