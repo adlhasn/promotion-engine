@@ -2,6 +2,7 @@ package com.adilhassan.maersk.promotionengine;
 
 import com.adilhassan.maersk.domain.Cart;
 import com.adilhassan.maersk.domain.SKU;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -54,5 +55,22 @@ class NSkusForAFixedPricePromotionTest {
 
     //Then
     assertEquals(discount, promotion.getDiscount());
+  }
+
+  @ParameterizedTest
+  @ValueSource(ints = {-2, -1, 0})
+  public void throwsAnExceptionOnInvalidValidForSkuCount(int count) {
+    assertThrows(IllegalArgumentException.class, () -> new NSkusForAFixedPricePromotion(count, SKU.A, 130));
+  }
+
+  @Test
+  public void throwsAnExceptionOnNullSku() {
+    assertThrows(IllegalArgumentException.class, () -> new NSkusForAFixedPricePromotion(3, null, 130));
+  }
+
+  @ParameterizedTest
+  @ValueSource(ints = {-2, -1})
+  public void throwsAnExceptionOnInvalidValueForFixedPrice(double fixedPrice) {
+    assertThrows(IllegalArgumentException.class, () -> new NSkusForAFixedPricePromotion(3, SKU.A, fixedPrice));
   }
 }
