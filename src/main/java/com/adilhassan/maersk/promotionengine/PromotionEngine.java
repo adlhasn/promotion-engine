@@ -60,8 +60,8 @@ public class PromotionEngine {
     for (final Promotion promotion : promotions) {
       if (promotion.isApplicable(cart)) {
         promotion.applyPromotion(cart);
+        discount += promotion.getDiscount();
       }
-      discount += promotion.getDiscount();
     }
   }
 

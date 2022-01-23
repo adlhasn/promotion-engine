@@ -1,0 +1,8 @@
+com/adilhassan/maersk/promotionengine/PromotionEngineScenarioBTest.class
+com/adilhassan/maersk/domain/CartTest.class
+com/adilhassan/maersk/promotionengine/TwoSkusForAFixedPricePromotionTest.class
+com/adilhassan/maersk/promotionengine/PromotionEngineTest.class
+com/adilhassan/maersk/promotionengine/NSkusForAFixedPricePromotionTest.class
+com/adilhassan/maersk/promotionengine/PromotionEngineScenarioATest.class
+com/adilhassan/maersk/promotionengine/PromotionEngineScenarioCTest.class
+com/adilhassan/maersk/promotionengine/XPercentOffOnASkuUnitPricePromotionTest.class

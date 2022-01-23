@@ -2,7 +2,7 @@ package com.adilhassan.maersk.promotionengine;
 
 import com.adilhassan.maersk.domain.Cart;
 import com.adilhassan.maersk.domain.SKU;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
