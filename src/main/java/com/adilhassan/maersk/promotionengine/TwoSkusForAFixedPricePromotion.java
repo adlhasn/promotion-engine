@@ -1,4 +1,4 @@
 package com.adilhassan.maersk.promotionengine;
 
-public class TwoSkusForAFixedPricePromotion {
+public class TwoSkusForAFixedPricePromotion implements Promotion {
 }

@@ -1,6 +1,11 @@
 package com.adilhassan.maersk.domain;
 
+import com.adilhassan.maersk.promotionengine.NSkusForAFixedPricePromotion;
+import com.adilhassan.maersk.promotionengine.Promotion;
+import com.adilhassan.maersk.promotionengine.TwoSkusForAFixedPricePromotion;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -83,13 +88,28 @@ class CartTest {
   }
 
   @Test
-  public void canAddAPromotionToCart() {
+  public void canAddASinglePromotionToCart() {
+    //Given
+    final Promotion promotion = new NSkusForAFixedPricePromotion();
 
+    //When
+    cart.addPromotion(promotion);
+
+    //Then
+    assertEquals(1, cart.getPromotions().size());
   }
 
   @Test
   public void canAddMultiplePromotionsToCartAtOnce() {
+    //Given
+    final Promotion promotion1 = new NSkusForAFixedPricePromotion();
+    final Promotion promotion2 = new TwoSkusForAFixedPricePromotion();
 
+    //When
+    cart.addPromotions(List.of(promotion1, promotion2));
+
+    //Then
+    assertEquals(2, cart.getPromotions().size());
   }
 
   @Test

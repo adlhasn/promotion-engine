@@ -1,4 +1,4 @@
 package com.adilhassan.maersk.promotionengine;
 
-public class XPercentOffOnASkuUnitPricePromotion {
+public class XPercentOffOnASkuUnitPricePromotion implements Promotion {
 }

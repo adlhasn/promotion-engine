@@ -1,4 +1,4 @@
 package com.adilhassan.maersk.promotionengine;
 
-public class NSkusForAFixedPricePromotion {
+public class NSkusForAFixedPricePromotion implements Promotion {
 }

@@ -1,5 +1,6 @@
 package com.adilhassan.maersk.domain;
 
+import com.adilhassan.maersk.promotionengine.Promotion;
 import com.adilhassan.maersk.promotionengine.PromotionEngine;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class Cart {
     skus = new ArrayList<>();
     skuCount = new ConcurrentHashMap<>();
     skuPrice = new ConcurrentHashMap<>();
-    promotionEngine = new PromotionEngine();
+    promotionEngine = new PromotionEngine(this);
   }
 
   public boolean addSku(final SKU sku) {
@@ -51,7 +52,19 @@ public class Cart {
     return skuCount.get(sku);
   }
 
-  public double getSkuPrice(SKU sku) {
+  public double getSkuPrice(final SKU sku) {
     return skuPrice.get(sku);
+  }
+
+  public void addPromotion(final Promotion promotion) {
+    promotionEngine.addPromotion(promotion);
+  }
+
+  public void addPromotions(final List<Promotion> promotions) {
+    promotionEngine.addPromotions(promotions);
+  }
+
+  public List<Promotion> getPromotions() {
+    return promotionEngine.getPromotions();
   }
 }
