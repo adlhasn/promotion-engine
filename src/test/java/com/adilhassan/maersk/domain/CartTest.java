@@ -9,7 +9,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 class CartTest {
 
   final Cart cart = new Cart();
@@ -151,6 +150,6 @@ class CartTest {
     cart.applyPromotions();
 
     //Then
-    assertEquals(130, cart.getDiscount());
+    assertEquals(130, cart.getTotal());
   }
 }

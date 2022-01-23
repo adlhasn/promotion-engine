@@ -41,6 +41,7 @@ class PromotionEngineTest {
   @Test
   public void canApplyPromotions() {
     //Given
+    cart.addSkus(3, SKU.A);
     final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
     promotionEngine.addPromotion(promotion);
 
