@@ -116,7 +116,7 @@ class CartTest {
   public void canAddMultiplePromotionsToCartAtOnce() {
     //Given
     final Promotion promotion1 = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
-    final Promotion promotion2 = new TwoSkusForAFixedPricePromotion();
+    final Promotion promotion2 = new TwoSkusForAFixedPricePromotion(SKU.C, SKU.D, 30);
 
     //When
     cart.addPromotions(List.of(promotion1, promotion2));
