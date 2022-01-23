@@ -57,7 +57,7 @@ class NSkusForAFixedPricePromotionTest {
 
   @ParameterizedTest
   @ValueSource(ints = {-2, -1, 0})
-  public void throwsAnExceptionOnInvalidValidForSkuCount(int count) {
+  public void throwsAnExceptionOnInvalidValueForSkuCount(int count) {
     assertThrows(IllegalArgumentException.class, () -> new NSkusForAFixedPricePromotion(count, SKU.A, 130));
   }
 

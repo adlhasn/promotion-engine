@@ -5,6 +5,7 @@ import com.adilhassan.maersk.domain.SKU;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -58,7 +59,21 @@ class XPercentOffOnASkuUnitPricePromotionTest {
     cart.addSku(SKU.A);
     final Promotion promotion = new XPercentOffOnASkuUnitPricePromotion(10, SKU.B);
 
-    //When - Then
-    assertEquals(0, promotion.getDiscount());
+    //When
+    double discount = promotion.getDiscount();
+
+    // Then
+    assertEquals(0, discount);
+  }
+
+  @ParameterizedTest
+  @ValueSource(ints = {-2, -1, 0})
+  public void throwsAnExceptionOnInvalidValueForPercent(int percent) {
+    assertThrows(IllegalArgumentException.class, () -> new XPercentOffOnASkuUnitPricePromotion(percent, SKU.A));
+  }
+
+  @Test
+  public void throwsAnExceptionOnNullSku() {
+    assertThrows(IllegalArgumentException.class, () -> new XPercentOffOnASkuUnitPricePromotion(10, null));
   }
 }
