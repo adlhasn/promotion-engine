@@ -8,6 +8,8 @@ public class NSkusForAFixedPricePromotion implements Promotion {
   private final SKU sku;
   private final double fixedPrice;
 
+  private double discount = 0;
+
   public NSkusForAFixedPricePromotion(final int skuCount, final SKU sku, final double fixedPrice) {
     validate(skuCount, sku, fixedPrice);
     this.skuCount = skuCount;
@@ -17,17 +19,24 @@ public class NSkusForAFixedPricePromotion implements Promotion {
 
   @Override
   public boolean isApplicable(final Cart cart) {
-    return false;
+    return cart.getSkuCount(sku) >= skuCount;
   }
 
   @Override
   public void applyPromotion(final Cart cart) {
+    int count = cart.getSkuCount(sku);
 
+    int numberOfPromotionsToApply = count / skuCount;
+    int numberOfSkusOnStandardPrice = count % skuCount;
+
+    double skuPrice = cart.getSkuPrice(sku);
+
+    discount = skuPrice - ((numberOfPromotionsToApply * fixedPrice) - (numberOfSkusOnStandardPrice * sku.getPrice()));
   }
 
   @Override
   public double getDiscount() {
-    return 0;
+    return discount;
   }
 
   private void validate(final int skuCount, final SKU sku, final double fixedPrice) {
