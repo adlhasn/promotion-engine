@@ -15,7 +15,6 @@ public class Cart {
   private final PromotionEngine promotionEngine;
 
   private double cartTotalWithoutPromotionalDiscount = 0;
-  private double cartTotalWithPromotionalDiscount = 0;
 
   public Cart() {
     skus = new ArrayList<>();
@@ -57,6 +56,10 @@ public class Cart {
 
   public double getSkuPrice(final SKU sku) {
     return skuPrice.get(sku);
+  }
+
+  public PromotionEngine getPromotionEngine() {
+    return promotionEngine;
   }
 
   public void addPromotion(final Promotion promotion) {
