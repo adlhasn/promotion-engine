@@ -87,6 +87,20 @@ class CartTest {
     assertEquals(60, skuCPrice);
   }
 
+
+  @Test
+  public void canGetCartTotalWithoutPromotionalDiscount() {
+    //Given
+    cart.addSkus(3, SKU.A);
+    cart.addSkus(2, SKU.B);
+
+    //When
+    double cartTotalWithoutPromotionalDiscount = cart.getCartTotalWithoutPromotionalDiscount();
+
+    //Then
+    assertEquals(210, cartTotalWithoutPromotionalDiscount);
+  }
+
   @Test
   public void canAddASinglePromotionToCart() {
     //Given
@@ -114,16 +128,20 @@ class CartTest {
 
   @Test
   public void canApplyPromotionsToCart() {
+    //Given
+    cart.addSkus(3, SKU.A);
+    final Promotion promotion = new NSkusForAFixedPricePromotion();
 
+    //When
+    cart.addPromotion(promotion);
+    cart.applyPromotions();
+
+    //Then
+    assertEquals(20, cart.getDiscount());
   }
 
   @Test
-  public void canGetTotalPriceOfTheCartWithoutPromotionalDiscount() {
-
-  }
-
-  @Test
-  public void canGetTotalPriceOfTheCartWithPromotionalDiscount() {
+  public void canGetCartTotalWithPromotionalDiscount() {
 
   }
 }

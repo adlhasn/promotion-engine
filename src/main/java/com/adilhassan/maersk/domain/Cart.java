@@ -14,6 +14,9 @@ public class Cart {
   private final Map<SKU, Double> skuPrice;
   private final PromotionEngine promotionEngine;
 
+  private double cartTotalWithoutPromotionalDiscount = 0;
+  private double cartTotalWithPromotionalDiscount = 0;
+
   public Cart() {
     skus = new ArrayList<>();
     skuCount = new ConcurrentHashMap<>();
@@ -66,5 +69,26 @@ public class Cart {
 
   public List<Promotion> getPromotions() {
     return promotionEngine.getPromotions();
+  }
+
+  public void applyPromotions() {
+    promotionEngine.applyPromotions();
+  }
+
+  public double getDiscount() {
+    return promotionEngine.getDiscount();
+  }
+
+  public double getCartTotalWithoutPromotionalDiscount() {
+    skuPrice.entrySet().forEach(entry -> cartTotalWithoutPromotionalDiscount += entry.getValue());
+    return cartTotalWithoutPromotionalDiscount;
+  }
+
+  public double getCartTotalWithPromotionalDiscount() {
+    return getCartTotalWithoutPromotionalDiscount() - getDiscount();
+  }
+
+  public double getTotal() {
+    return getCartTotalWithPromotionalDiscount();
   }
 }

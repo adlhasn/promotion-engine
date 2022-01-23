@@ -8,7 +8,7 @@ import java.util.List;
 public class PromotionEngine {
   private final Cart cart;
   private final List<Promotion> promotions;
-  private double promotionalDiscount = 0;
+  private double discount = 0;
 
   public PromotionEngine(final Cart cart) {
     this.cart = cart;
@@ -31,9 +31,16 @@ public class PromotionEngine {
     return promotions;
   }
 
+  public void applyPromotions() {
+    for (final Promotion promotion : promotions) {
+      if (promotion.isApplicable(cart)) {
+        promotion.applyPromotion(cart);
+      }
+      discount = discount + promotion.getDiscount();
+    }
+  }
 
-  public double getPromotionalDiscount() {
-    //TODO
-    return 0;
+  public double getDiscount() {
+    return discount;
   }
 }
