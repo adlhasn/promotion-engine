@@ -46,10 +46,6 @@ public class Cart {
     return skus;
   }
 
-  public void removeSku(final SKU sku) {
-    skus.remove(sku);
-  }
-
   public int getSkuCount(final SKU sku) {
     return skuCount.get(sku) == null ? 0 : skuCount.get(sku);
   }

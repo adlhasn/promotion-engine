@@ -38,19 +38,6 @@ class CartTest {
   }
 
   @Test
-  public void canRemoveASkuFromTheCart() {
-    //Given
-    final SKU A = SKU.A;
-    cart.addSku(A);
-
-    //When
-    cart.removeSku(A);
-
-    //Then
-    assertEquals(0, cart.getSkus().size());
-  }
-
-  @Test
   public void canGetSkuCount() {
     //Given
     cart.addSku(SKU.A);
@@ -92,6 +79,10 @@ class CartTest {
     //Given
     cart.addSkus(3, SKU.A);
     cart.addSkus(2, SKU.B);
+
+    final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
+    cart.addPromotion(promotion);
+    cart.applyPromotions();
 
     //When
     double cartTotalWithoutPromotionalDiscount = cart.getCartTotalWithoutPromotionalDiscount();
@@ -141,6 +132,20 @@ class CartTest {
 
   @Test
   public void canGetCartTotalWithPromotionalDiscount() {
+    //Given
+    cart.addSkus(3, SKU.A);
+    final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
+
+    //When
+    cart.addPromotion(promotion);
+    cart.applyPromotions();
+
+    //Then
+    assertEquals(130, cart.getTotal());
+  }
+
+  @Test
+  public void canGetCartTotal() {
     //Given
     cart.addSkus(3, SKU.A);
     final Promotion promotion = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
