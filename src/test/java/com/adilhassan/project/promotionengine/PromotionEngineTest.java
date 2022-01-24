@@ -54,10 +54,10 @@ class PromotionEngineTest {
   }
 
   /*
-  If the same promotion is applied twice on a given SKU then only the last one takes effect
+  If the same promotion is applied twice on a given SKU then only the first one takes effect, the other will be ignored
    */
   @Test
-  public void onlyTheLastAppliedPromotionTakesEffect() {
+  public void onlyTheFirstAppliedPromotionTakesEffect_Scenario1() {
     //Given
     cart.addSkus(5, SKU.A);
     final Promotion promotion1 = new NSkusForAFixedPricePromotion(3, SKU.A, 130);
@@ -68,8 +68,33 @@ class PromotionEngineTest {
     promotionEngine.applyPromotions();
 
     //Then
-    assertEquals(50, promotionEngine.getDiscount());
-    assertEquals(200, cart.getTotal());
+    assertEquals(20, promotionEngine.getDiscount());
+    assertEquals(230, cart.getTotal());
+  }
+
+  @Test
+  public void onlyTheFirstAppliedPromotionTakesEffect_Scenario2() {
+    //Given
+    cart.addSku(SKU.A);
+    cart.addSku(SKU.B);
+    cart.addSku(SKU.C);
+    cart.addSku(SKU.D);
+
+    final Promotion promotion1 = new TwoSkusForAFixedPricePromotion(SKU.A, SKU.B, 70);
+    final Promotion promotion2 = new TwoSkusForAFixedPricePromotion(SKU.B, SKU.C, 40);
+    final Promotion promotion3 = new TwoSkusForAFixedPricePromotion(SKU.C, SKU.D, 30);
+
+    //When
+    promotionEngine.addPromotions(List.of(promotion1, promotion2, promotion3));
+    promotionEngine.applyPromotions();
+
+    //Then
+    //promotion1 Discount = (80 - 70) = 10
+    //promotion2 Discount = N/A
+    //promotion2 Discount = (35 - 30) = 5
+    //total promotional discount = 10 + 5
+    assertEquals(15, promotionEngine.getDiscount());
+    assertEquals(100, cart.getTotal());
   }
 
   @Test
